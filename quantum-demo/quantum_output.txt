@@ -1,13 +1,13 @@
 
 ============================================================
-  QAISS â€” Quantum AI Immune Security System
+  QAISS — Quantum AI Immune Security System
   Quantum Circuit Demonstrations
-  Platform: Origin Quantum WuKong (72-qubit)
+  Backend: CPUQVM (local)
   SDK: pyqpanda3
 ============================================================
 
 ============================================================
-  QAISS LAYER 1 â€” PURPLE
+  QAISS LAYER 1 — PURPLE
   Quantum Random Number Generator (QRNG)
 ============================================================
 
@@ -15,16 +15,17 @@
   Using 13 quantum circuits x 20 qubits
 
   Generated 256 quantum random bits
-  Distribution: 135 zeros, 121 ones (0.473 ratio)
-  Ideal ratio: 0.500 | Deviation: 0.0273
+  Distribution: 134 zeros, 122 ones (0.477 ratio)
+  Ideal ratio: 0.500 | Deviation: 0.0234
+  Shannon entropy (normalized): 0.1850
 
-  First 64 bits: 0000000010010101000101110010001010000010011101011010110000010001...
-  Hex (first 32): 009517228275AC114E2E281F970614F4...
+  First 64 bits: 0011001010001101100111111010011100100010110100000111111011000011...
+  Hex (first 32): 328D9FA722D07EC38003679350C96507...
 
   -> This entropy feeds QAISS cryptographic key generation
 
 ============================================================
-  QAISS LAYER 2 â€” TEAL
+  QAISS LAYER 2 — TEAL
   Quantum Anomaly Detection
 ============================================================
 
@@ -33,39 +34,39 @@
 
   [NORMAL TRAFFIC]
     Pattern: [0.3, 0.5, 0.2, 0.7]
-    |0000> probability: 0.653
-    Anomaly score: 0.347
+    |0000> probability: 0.641
+    Anomaly score: 0.359
 
   [ANOMALOUS TRAFFIC]
     Pattern: [0.3, 0.5, 2.1, 0.7]
-    |0000> probability: 0.538
-    Anomaly score: 0.462
+    |0000> probability: 0.542
+    Anomaly score: 0.458
 
   Threshold: 0.700
-  Normal:  0.347 -> SAFE
-  Anomaly: 0.462 -> SAFE
+  Normal:  0.359 -> SAFE
+  Anomaly: 0.458 -> SAFE
 
   -> QAISS detects anomalies classical systems miss
 
 ============================================================
-  QAISS LAYER 3 â€” CORAL
+  QAISS LAYER 3 — CORAL
   BB84 Quantum Key Distribution
 ============================================================
 
   Simulating BB84 protocol with 20 qubits
 
-  Alice's bits:   00111000111100100100
-  Alice's bases:  XZXXZXZZZZXXZXZZZZZX
-  Bob's bases:    ZXXZZXZXZXXXZZZZXXZX
-  Matching bases: ..Y.YYY.Y.YYY.YY..YY
+  Alice's bits:   10011100100000110101
+  Alice's bases:  XXXXZXXZZZZZZXXZZXZX
+  Bob's bases:    XXZZZZZZXZXZZXXZZXZX
+  Matching bases: YY..Y..Y.Y.YYYYYYYYY
 
-  Shared key (12 bits): 110011101000
-  Key efficiency: 60% (theoretical ~50%)
+  Shared key (14 bits): 10100000110101
+  Key efficiency: 70% (theoretical ~50%)
 
   -> QAISS rotates keys automatically using quantum-safe distribution
 
 ============================================================
-  QAISS LAYER 4 â€” BLUE
+  QAISS LAYER 4 — BLUE
   Quantum State Health Monitor
 ============================================================
 
@@ -73,15 +74,16 @@
   Running 2000 measurements
 
   Measurement results:
-    |00>: 0.502  (expected: 0.500)
+    |00>: 0.495  (expected: 0.500)
     |01>: 0.000  (expected: 0.000)
     |10>: 0.000  (expected: 0.000)
-    |11>: 0.497  (expected: 0.500)
+    |11>: 0.505  (expected: 0.500)
 
   Health indicators:
     Fidelity:      1.0000  HEALTHY
-    Balance:       0.9950  BALANCED
+    Balance:       0.9900  BALANCED
     Error rate:    0.0000  NOMINAL
+    Shannon H:     0.5000  (normalized)
     Entropy grade: A+
 
   -> QAISS dashboard shows these metrics in real-time
@@ -89,12 +91,12 @@
 ============================================================
   QAISS SYSTEM STATUS: ALL LAYERS OPERATIONAL
 ============================================================
-  Layer 1 â€” Quantum Entropy Core:    256-bit QRNG active
-  Layer 2 â€” AI Neural Immune:        Anomaly detection online
-  Layer 3 â€” Self-Healing Protocol:    QKD key rotation ready
-  Layer 4 â€” Command Dashboard:        State health nominal
+  Layer 1 — Quantum Entropy Core:    256-bit QRNG active
+  Layer 2 — AI Neural Immune:        Anomaly detection online
+  Layer 3 — Self-Healing Protocol:    QKD key rotation ready
+  Layer 4 — Command Dashboard:        State health nominal
 ============================================================
   https://qaissecurity.com
-  Built on Origin Quantum WuKong | 72-qubit quantum computer
+  CPUQVM (local) | 72-qubit quantum computer
 ============================================================
 
