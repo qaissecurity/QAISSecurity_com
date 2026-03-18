@@ -1,0 +1,24 @@
+/* TEAM */
+
+Project: QAISS — Quantum AI Immune Security System
+Role: Founder & Developer
+Contact: contact@qaissecurity.com
+Location: Constanța, Romania
+
+/* TECHNOLOGY */
+
+Platform: Static HTML/CSS/JS
+3D Engine: Three.js r128
+Quantum Backend: OriginQ WuKong 72-qubit (Origin Pilot OS)
+Quantum SDK: pyqpanda3
+PQC Standards: NIST FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA)
+Fonts: Outfit, JetBrains Mono (Google Fonts)
+Hosting: Netlify
+Version Control: GitHub
+
+/* SITE */
+
+Last Updated: 2026-03-16
+Language: English
+Standards: HTML5, CSS3, ES6
+Accessibility: WCAG 2.1 AA target
