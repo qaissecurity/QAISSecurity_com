@@ -31,7 +31,7 @@ except ImportError:
     sys.exit(1)
 
 try:
-    from pyqpanda3.qcloud import QCloudService, LogOutput
+    from pyqpanda3.qcloud import QCloudService, QCloudOptions, LogOutput
     QCLOUD_AVAILABLE = True
 except ImportError:
     QCLOUD_AVAILABLE = False
@@ -55,7 +55,9 @@ class QuantumBackend:
         """Run a program and return counts dict. Falls back to CPUQVM on cloud errors."""
         if self.use_cloud:
             try:
-                result = self._backend.run(prog, shots, options=None).result()
+                options = QCloudOptions()
+                options.set_is_prob_counts(True)
+                result = self._backend.run(prog, shots, options).result()
                 return result.get_counts()
             except Exception as e:
                 print(f"  [WARN] QCloud error: {e} — falling back to CPUQVM")
