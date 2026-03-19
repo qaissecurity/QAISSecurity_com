@@ -1049,7 +1049,7 @@
       <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('secure')"><span class="qcc-qs-dot" style="background:#22c55e"></span><span class="qcc-qs-val" id="qccQsSecure">2,134</span><span class="qcc-qs-lbl">Secure</span></div>
       <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('monitoring')"><span class="qcc-qs-dot" style="background:#fbbf24"></span><span class="qcc-qs-val" id="qccQsMonitor">502</span><span class="qcc-qs-lbl">Monitoring</span></div>
       <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('threats')"><span class="qcc-qs-dot" style="background:#f43f5e"></span><span class="qcc-qs-val" id="qccQsThreats">0</span><span class="qcc-qs-lbl">Active Threats</span></div>
-      <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('qubits')"><span class="qcc-qs-dot" style="background:var(--purple)"></span><span class="qcc-qs-val" id="qccQsQubits">72</span><span class="qcc-qs-lbl">Qubits</span></div>
+      <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('qubits')"><span class="qcc-qs-dot" style="background:var(--purple)"></span><span class="qcc-qs-val" id="qccQsQubits">180</span><span class="qcc-qs-lbl">Qubits</span></div>
       <div class="qcc-qs qcc-qs-click" onclick="qccStatClick('uptime')"><span class="qcc-qs-dot" style="background:var(--teal)"></span><span class="qcc-qs-val" id="qccQsUptime">99.97%</span><span class="qcc-qs-lbl">Uptime</span></div>
     </div>
     <div class="qcc-quick-actions">
@@ -1166,9 +1166,9 @@
     <!-- Left Nodes -->
     <div class="qcc-nodes-left">
       <div class="qcc-node" onclick="focusLayer(0)">
-        <div class="qcc-node-circle" style="border-color:var(--purple)"><span class="qcc-node-val">72</span></div>
+        <div class="qcc-node-circle" style="border-color:var(--purple)"><span class="qcc-node-val">180</span></div>
         <div class="qcc-node-label">QUBITS</div>
-        <div class="qcc-node-sub">WuKong Processor</div>
+        <div class="qcc-node-sub">WuKong 180 Processor</div>
       </div>
       <div class="qcc-node" onclick="focusLayer(1)">
         <div class="qcc-node-circle" style="border-color:var(--teal)"><span class="qcc-node-val">14.2M</span></div>
@@ -1224,6 +1224,27 @@
         <div class="qcc-app-item"><span class="qcc-app-dot" style="background:#22c55e"></span>Self-Healing<span class="qcc-app-val">287ms avg</span></div>
         <div class="qcc-app-more" onclick="qccViewAll('services')">View All →</div>
       </div>
+      <!-- OriginQ Hardware Status Card -->
+      <div class="qcc-originq-status">
+        <div class="qcc-oq-header">
+          <span class="qcc-oq-logo">Q</span>
+          <span>OriginQ WuKong 180</span>
+          <span class="qcc-oq-badge" id="qccWukongStatus">CONNECTED</span>
+        </div>
+        <div class="qcc-oq-stats">
+          <div class="qcc-oq-stat"><span>Qubits</span><span>180</span></div>
+          <div class="qcc-oq-stat"><span>Active</span><span>72</span></div>
+          <div class="qcc-oq-stat"><span>Best Fidelity</span><span>99.73%</span></div>
+          <div class="qcc-oq-stat"><span>SDK</span><span>pyqpanda3 v0.3.4</span></div>
+          <div class="qcc-oq-stat"><span>Backend</span><span>QCloudService</span></div>
+        </div>
+        <div class="qcc-oq-circuits">
+          <div class="qcc-oq-circuit"><span>Layer 1: QRNG</span><span>20 qubits → [1-20]</span><span class="qcc-oq-ready">READY</span></div>
+          <div class="qcc-oq-circuit"><span>Layer 2: Anomaly</span><span>4 qubits → [38-41]</span><span class="qcc-oq-ready">READY</span></div>
+          <div class="qcc-oq-circuit"><span>Layer 3: BB84 QKD</span><span>2 qubits → [42-43]</span><span class="qcc-oq-ready">READY</span></div>
+          <div class="qcc-oq-circuit"><span>Layer 4: Bell State</span><span>2 qubits → [44-45]</span><span class="qcc-oq-ready">READY</span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1241,6 +1262,7 @@
         <button class="qcc-btab" onclick="qccBtab(this,4)">Activity</button>
         <button class="qcc-btab" onclick="qccBtab(this,5)">Incidents</button>
         <button class="qcc-btab qcc-ai-btab" onclick="qccBtab(this,6)">🤖 AI Insights</button>
+        <button class="qcc-btab" onclick="qccBtab(this,7)">⚛ Hardware</button>
       </div>
 
       <!-- TAB 0: Sessions -->
@@ -1309,11 +1331,11 @@
             <div class="qcc-rotation-chart" id="qccRotChart"></div>
           </div>
           <div class="qcc-bp-card">
-            <div class="qcc-bc-sub" style="margin-bottom:6px">By Algorithm</div>
-            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--purple)"></span>ML-KEM-1024<span class="qcc-bc-rval">1,847</span></div>
-            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--teal)"></span>ML-KEM-768<span class="qcc-bc-rval">634</span></div>
-            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--blue)"></span>ML-DSA-87<span class="qcc-bc-rval">287</span></div>
-            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--coral)"></span>SLH-DSA-256f<span class="qcc-bc-rval">79</span></div>
+            <div class="qcc-bc-sub" style="margin-bottom:6px">Quantum Circuits (WuKong)</div>
+            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--purple)"></span>QRNG: 20q × 13 batches, H gates<span class="qcc-bc-rval" style="font-size:.5rem">Shannon H</span></div>
+            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--teal)"></span>Anomaly: 4q, RY+CNOT+H<span class="qcc-bc-rval" style="font-size:.5rem">Score 0.45</span></div>
+            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--coral)"></span>BB84: 1q × 20 rounds, X+H<span class="qcc-bc-rval" style="font-size:.5rem">Eff. 55%</span></div>
+            <div class="qcc-bc-row"><span class="qcc-bc-dot" style="background:var(--blue)"></span>Bell: 2q, H+CNOT<span class="qcc-bc-rval" style="font-size:.5rem">A+ 1.000</span></div>
           </div>
           <div class="qcc-bp-card">
             <div class="qcc-bc-sub" style="margin-bottom:6px">Performance</div>
@@ -1405,6 +1427,44 @@
         </div>
       </div>
 
+      <!-- TAB 7: Quantum Hardware -->
+      <div class="qcc-bpanel" id="qccBpanel7" style="display:none">
+        <div class="qcc-bp-grid">
+          <div class="qcc-bp-card">
+            <div class="qcc-bc-sub">OriginQ WuKong 180</div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Architecture</span><span class="qcc-sc-val">Superconducting</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Total Qubits</span><span class="qcc-sc-val" style="color:var(--purple)">180</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Active Qubits</span><span class="qcc-sc-val">72</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Temperature</span><span class="qcc-sc-val" style="color:var(--blue)">15 mK</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Gate Fidelity</span><span class="qcc-sc-val" style="color:#22c55e">99.73%</span></div>
+          </div>
+          <div class="qcc-bp-card">
+            <div class="qcc-bc-sub">SDK &amp; Connection</div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">SDK</span><span class="qcc-sc-val">pyqpanda3 v0.3.4</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Backend</span><span class="qcc-sc-val">QCloudService</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">API Auth</span><span class="qcc-sc-val" style="color:#22c55e">Verified</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">API Endpoint</span><span class="qcc-sc-val" style="font-size:.5rem">pyqanda-admin.qpanda.cn</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Chip Status</span><span class="qcc-sc-val" id="qccChipStatus" style="color:var(--amber)">Maintenance</span></div>
+          </div>
+          <div class="qcc-bp-card">
+            <div class="qcc-bc-sub">Optimal Qubit Mapping</div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">QRNG (L1)</span><span class="qcc-sc-val" style="font-size:.5rem">[1-20] linear chain</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Anomaly (L2)</span><span class="qcc-sc-val" style="font-size:.5rem">[38,39,40,41]</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">BB84 (L3)</span><span class="qcc-sc-val" style="font-size:.5rem">[42,43]</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Bell (L4)</span><span class="qcc-sc-val" style="font-size:.5rem">[44,45]</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Error Mitigation</span><span class="qcc-sc-val" style="color:#22c55e">Readout + Global</span></div>
+          </div>
+          <div class="qcc-bp-card">
+            <div class="qcc-bc-sub">Circuit Execution</div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Circuits Defined</span><span class="qcc-sc-val">4</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Submitted</span><span class="qcc-sc-val" style="color:#22c55e">Yes</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Hardware Run</span><span class="qcc-sc-val" style="color:var(--amber)">Pending</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Simulator Run</span><span class="qcc-sc-val" style="color:#22c55e">Complete</span></div>
+            <div class="qcc-stat-card"><span class="qcc-sc-label">Fallback</span><span class="qcc-sc-val">CPUQVM Active</span></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1438,8 +1498,8 @@
       <!-- API Keys Tab -->
       <div class="qcc-settings-body" id="qccSettingsApi">
         <div class="qcc-api-section">
-          <div class="qcc-api-title">Quantum Cloud API</div>
-          <div class="qcc-api-desc">Connect to OriginQ WuKong quantum processor for real-time entropy and circuit execution.</div>
+          <div class="qcc-api-title">OriginQ WuKong 180 — Quantum Cloud API</div>
+          <div class="qcc-api-desc">Connect to OriginQ WuKong 180-qubit superconducting quantum processor via pyqpanda3 QCloudService. Used for QRNG entropy generation, anomaly detection circuits, BB84 QKD, and Bell state monitoring. API authenticated ✓</div>
           <div class="qcc-api-input-row">
             <input type="password" class="qcc-api-input" id="qccApiOriginQ" placeholder="Enter OriginQ API Key..." value="">
             <button class="qcc-api-save" onclick="qccSaveKey('originq')">Save</button>

@@ -866,3 +866,18 @@ body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;o
 /* Ensure logs panel z-index */
 .logs-panel{z-index:46 !important}
 .logs-toggle{z-index:44 !important}
+
+/* ═══ OriginQ Hardware Status Card ═══ */
+.qcc-originq-status{background:rgba(0,0,0,.5);backdrop-filter:blur(12px);border:1px solid rgba(168,85,247,.15);border-radius:8px;padding:10px;margin-top:12px}
+.qcc-oq-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.65rem;color:var(--text)}
+.qcc-oq-logo{width:20px;height:20px;background:var(--purple);border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.6rem;color:#fff}
+.qcc-oq-badge{margin-left:auto;font-family:var(--mono);font-size:.4rem;padding:2px 6px;border-radius:10px;background:rgba(34,197,94,.12);color:#22c55e;letter-spacing:.1em}
+.qcc-oq-badge.maintenance{background:rgba(251,191,36,.12);color:#fbbf24}
+.qcc-oq-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px}
+.qcc-oq-stat{display:flex;justify-content:space-between;padding:3px 6px;font-size:.55rem}
+.qcc-oq-stat span:first-child{color:var(--dim)}
+.qcc-oq-stat span:last-child{color:var(--text);font-family:var(--mono);font-size:.5rem}
+.qcc-oq-circuits{border-top:1px solid rgba(255,255,255,.04);padding-top:6px}
+.qcc-oq-circuit{display:flex;align-items:center;gap:4px;padding:2px 6px;font-size:.5rem;color:var(--muted)}
+.qcc-oq-circuit span:nth-child(2){flex:1;font-family:var(--mono);font-size:.45rem;color:var(--dim)}
+.qcc-oq-ready{font-family:var(--mono);font-size:.4rem;padding:1px 4px;background:rgba(34,197,94,.1);color:#22c55e;border-radius:2px}

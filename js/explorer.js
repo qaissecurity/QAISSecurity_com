@@ -64,6 +64,21 @@ var QAISS_NODES=[
   {lat:31.23,lon:121.47,name:'Shanghai',region:'APAC',st:'monitoring'}
 ];
 
+// OriginQ WuKong Hardware Configuration
+var QAISS_HARDWARE={
+  processor:'OriginQ WuKong 180-qubit',
+  sdk:'pyqpanda3 v0.3.4',
+  status:'connected',
+  qubits:{
+    total:180,active:72,
+    bestFidelity:{qubit:1,fidelity:0.9973},
+    qrngMapping:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    anomalyMapping:[38,39,40,41],
+    bb84Mapping:[42,43],
+    bellMapping:[44,45]
+  }
+};
+
 // Region key rotation stats (simulated)
 var REGION_KEYS={
   NA:{rotated:847,pending:12,algo:'ML-KEM-1024',speed:'247ms'},
@@ -320,7 +335,7 @@ function closeExplorer(){var o=document.getElementById('expO');if(!o)return;o.cl
 var layerColors=[0xa855f7,0x2dd4bf,0xf472b6,0x38bdf8];
 var layerNames=['Quantum Entropy Core','AI Neural Immune Engine','Self-Healing Protocol','Real-Time Dashboard'];
 var layerDescs=[
-  'True quantum randomness from 72-qubit WuKong processor. Hadamard gates create superposition, measurement collapses to pure entropy. Feeds all cryptographic operations across 847 edge nodes.',
+  'True quantum randomness from WuKong 180-qubit processor (72 active). QCloudService + CPUQVM fallback. Shannon entropy validated. Feeds all cryptographic operations across 847 edge nodes.',
   'Quantum autoencoder detects anomalies in network traffic. RY rotation encodes features, CNOT entanglement + Hadamard interference reveal deviations. 14.2M patterns trained. Retrained every 3 hours.',
   'BB84 Quantum Key Distribution for automatic threat remediation. Fresh quantum keys replace compromised material in under 340ms. Zero human intervention required. Information-theoretic security.',
   'Bell state tomography monitors system coherence in real-time. Fidelity 0.9987, Balance 0.9950, Error Rate 0.0000. Entropy Grade: A+. Displayed across all protected infrastructure.'
