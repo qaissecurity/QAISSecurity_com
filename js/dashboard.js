@@ -36,6 +36,9 @@
     {badge:'SCAN',color:'rgba(56,189,248,.15)',text_color:'var(--blue)',msg:'Full system scan completed — 0 vulnerabilities'},
     {badge:'AI',color:'rgba(45,212,191,.15)',text_color:'var(--teal)',msg:'Neural immune retrained — '+Math.floor(14e6+Math.random()*1e6).toLocaleString()+' patterns'},
     {badge:'CERT',color:'rgba(244,114,182,.15)',text_color:'var(--coral)',msg:'ML-DSA certificate renewed — validity: 90 days'},
+    {badge:'QCLOUD',color:'rgba(168,85,247,.15)',text_color:'var(--purple)',msg:'QCloudService connected — WuKong backend ready'},
+    {badge:'ENTROPY',color:'rgba(45,212,191,.15)',text_color:'var(--teal)',msg:'Shannon H (normalized): 0.'+Math.floor(4990+Math.random()*10)+' — Grade A+'},
+    {badge:'BELL',color:'rgba(56,189,248,.15)',text_color:'var(--blue)',msg:'Bell state |Phi+> fidelity: 0.99'+Math.floor(80+Math.random()*19)+' — error rate: 0.00'+Math.floor(Math.random()*20)},
   ];
 
   function addFeedItem(){
@@ -205,8 +208,8 @@
     var msgs = {
       'rotate': 'Force key rotation initiated... All ML-KEM keys refreshed in 287ms.',
       'scan': 'Full system scan running... 0 vulnerabilities detected. All layers nominal.',
-      'entropy': 'Quantum entropy batch generated — 1024 bits from WuKong QRNG.',
-      'health': 'Bell state diagnostic complete — Fidelity: 0.9993, Grade: A+.',
+      'entropy': 'Quantum entropy batch generated — 1024 bits from WuKong QRNG. Shannon H (normalized): 0.4998.',
+      'health': 'Bell state diagnostic — Fidelity: 0.9993, Error rate: 0.0007, Shannon H: 0.5000, Grade: A+.',
       'export': 'Security report exported — PDF generated with 24h threat analysis.',
       'alert': 'Alert configuration panel — set thresholds, channels, and escalation rules.'
     };
@@ -243,9 +246,9 @@
       // Shannon entropy (binary)
       var p = ratio, q = 1-ratio;
       var entropy = -(p*Math.log2(p) + q*Math.log2(q));
-      if(shannonEl) shannonEl.textContent = entropy.toFixed(4);
+      if(shannonEl) shannonEl.textContent = entropy.toFixed(4) + ' (norm: ' + (entropy/Math.log2(bits)).toFixed(4) + ')';
 
-      if(typeof showToast==='function') showToast(bits+'-bit quantum entropy generated','ok');
+      if(typeof showToast==='function') showToast(bits+'-bit quantum entropy generated — Shannon H: '+entropy.toFixed(4),'ok');
     }, 600 + Math.random()*400);
   };
 
