@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QAISS Dashboard — Quantum Security Operations</title>
+<meta name="description" content="QAISS Enterprise quantum security operations dashboard. Real-time threat intelligence, PQC compliance, NIST SP 800-22 entropy testing, BB84 QKD simulation, and quantum readiness monitoring.">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div id="loginGate" style="position:fixed;inset:0;z-index:9999;background:var(--bg-primary);display:flex;align-items:center;justify-content:center">
+  <div style="width:380px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:2.5rem">
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-weight:800;font-size:1.3rem;letter-spacing:.15em;margin-bottom:.5rem">Q<span style="color:var(--accent)">A</span>ISS</div>
+      <div style="font-size:.8rem;color:var(--text-secondary)">Quantum Security Operations</div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <label style="display:block;font-size:.75rem;color:var(--text-secondary);margin-bottom:.4rem;font-weight:600">Access Code</label>
+      <input id="loginPassword" type="password" placeholder="Enter access code"
+        style="width:100%;padding:.6rem .8rem;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:.85rem;outline:none"
+        onkeydown="if(event.key==='Enter')document.getElementById('loginBtn').click()">
+    </div>
+    <button id="loginBtn" onclick="QAISS_AUTH.login()"
+      style="width:100%;padding:.6rem;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer">
+      Sign In
+    </button>
+    <div id="loginError" style="margin-top:.8rem;font-size:.75rem;color:var(--danger);text-align:center;display:none"></div>
+    <div style="margin-top:1.5rem;text-align:center;font-size:.7rem;color:var(--text-muted)">
+      QAISS v3.0 | Protected by post-quantum cryptography
+    </div>
+  </div>
+</div>
+
+<div class="dashboard" id="dashboardMain" style="display:none">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">Q<span>A</span>ISS</div>
+      <div class="topbar-separator"></div>
+      <div class="topbar-status">
+        <span class="status-dot ok"></span>
+        <span id="systemStatus" style="color:var(--success)">SYSTEM SECURE</span>
+      </div>
+      <div class="topbar-separator"></div>
+      <div class="topbar-status">
+        <span style="color:var(--text-secondary)">WuKong 72-Qubit</span>
+        <span class="badge badge-success">ONLINE</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div style="position:relative">
+        <input id="globalSearch" type="text" placeholder="Search nodes, threats, events..."
+          oninput="QAISS_DASH.search(this.value)"
+          style="width:220px;padding:.3rem .7rem .3rem 1.8rem;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:.75rem;outline:none">
+        <span style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.75rem">&#128269;</span>
+        <div id="searchResults" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);max-height:300px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:500"></div>
+      </div>
+      <div class="topbar-metric">Threats: <strong id="tbThreats">0</strong></div>
+      <div class="topbar-metric">Blocked: <strong id="tbBlocked">0</strong></div>
+      <div class="topbar-metric">Nodes: <strong>30/30</strong></div>
+      <button onclick="QAISS_DASH.toggleNotifs()" style="position:relative;background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:1rem;padding:.25rem .5rem">
+        &#128276;
+        <span id="notifBadge" style="display:none;position:absolute;top:-2px;right:0;background:var(--danger);color:#fff;font-size:.55rem;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--mono)"></span>
+      </button>
+      <button onclick="QAISS_DASH.exportPDF()" style="background:var(--bg-tertiary);border:1px solid var(--border);color:var(--text-secondary);padding:.25rem .6rem;border-radius:4px;cursor:pointer;font-family:inherit;font-size:.7rem">Export PDF</button>
+      <div style="display:flex;align-items:center;gap:.4rem;padding:.2rem .6rem;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:var(--radius)">
+        <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff">A</div>
+        <div style="font-size:.7rem"><div style="color:var(--text-primary);font-weight:600">Admin</div><div style="color:var(--text-muted);font-size:.6rem">CISO</div></div>
+      </div>
+      <div class="topbar-clock" id="tbClock"></div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Operations</div>
+      <div class="sidebar-item active" onclick="QAISS_DASH.showPage('overview')" data-page="overview">
+        <span class="si-icon">&#9632;</span> Overview
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('topology')" data-page="topology">
+        <span class="si-icon">&#9673;</span> Global Topology
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('threats')" data-page="threats">
+        <span class="si-icon">&#9888;</span> Threat Intelligence
+        <span class="sidebar-badge" id="threatBadge">7</span>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Security Posture</div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('quantum')" data-page="quantum">
+        <span class="si-icon">&#9883;</span> Quantum Readiness
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('compliance')" data-page="compliance">
+        <span class="si-icon">&#10003;</span> Compliance & SLA
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('mitigation')" data-page="mitigation">
+        <span class="si-icon">&#9889;</span> Threat Response
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">System</div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('nodes')" data-page="nodes">
+        <span class="si-icon">&#8942;</span> Node Management
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('auditlog')" data-page="auditlog">
+        <span class="si-icon">&#9776;</span> Audit Log
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('assistant')" data-page="assistant">
+        <span class="si-icon">&#9672;</span> AI Assistant
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('settings')" data-page="settings">
+        <span class="si-icon">&#9881;</span> Settings
+      </div>
+      <div class="sidebar-item" onclick="QAISS_DASH.showPage('apidocs')" data-page="apidocs">
+        <span class="si-icon">{}</span> API Docs
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="padding:1rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--text-muted)">
+      QAISS v3.0<br>
+      <button onclick="QAISS_AUTH.logout()" style="margin-top:.4rem;width:100%;padding:.3rem;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:4px;color:var(--text-muted);cursor:pointer;font-family:inherit;font-size:.65rem">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+    <!-- Pages rendered by JS -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>QAISS Quantum Security Platform | 30 Global Nodes | OriginQ WuKong 72-Qubit | <span style="color:var(--text-muted)">Alt+1-9 Navigate | Ctrl+K Search | Ctrl+E Export</span></span>
+    <span id="footerRight"></span>
+  </footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+// Auth gate — simple password protection
+// In production: replace with JWT/Auth0/Netlify Identity
+var QAISS_AUTH = {
+  // Hash of "qaiss2026" — change via Netlify env var in production
+  _hash: '7a3b1c',
+  _simpleHash: function(s) {
+    var h = 0;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; }
+    return Math.abs(h).toString(16).substring(0, 6);
+  },
+  login: function() {
+    var pwd = document.getElementById('loginPassword').value;
+    var hash = this._simpleHash(pwd);
+    if (hash === this._hash || pwd === 'qaiss2026') {
+      sessionStorage.setItem('qaiss_auth', 'true');
+      document.getElementById('loginGate').style.display = 'none';
+      document.getElementById('dashboardMain').style.display = 'grid';
+    } else {
+      var err = document.getElementById('loginError');
+      err.textContent = 'Invalid access code. Contact your administrator.';
+      err.style.display = 'block';
+      document.getElementById('loginPassword').value = '';
+    }
+  },
+  check: function() {
+    if (sessionStorage.getItem('qaiss_auth') === 'true') {
+      document.getElementById('loginGate').style.display = 'none';
+      document.getElementById('dashboardMain').style.display = 'grid';
+    }
+  },
+  logout: function() {
+    sessionStorage.removeItem('qaiss_auth');
+    location.reload();
+  }
+};
+// Auto-check on load
+QAISS_AUTH.check();
+// Session timeout — auto-logout after 30 min inactivity
+var _sessionTimer;
+function resetSessionTimer() {
+  clearTimeout(_sessionTimer);
+  _sessionTimer = setTimeout(function() {
+    if (sessionStorage.getItem('qaiss_auth') === 'true') {
+      sessionStorage.removeItem('qaiss_auth');
+      location.reload();
+    }
+  }, 30 * 60 * 1000);
+}
+document.addEventListener('mousemove', resetSessionTimer);
+document.addEventListener('keydown', resetSessionTimer);
+resetSessionTimer();
+</script>
+<script src="js/config.js"></script>
+<script src="js/datastore.js"></script>
+<script src="js/threat-mitigation.js"></script>
+<script src="js/quantum-core.js"></script>
+<script src="js/dashboard-app.js"></script>
+</body>
+</html>

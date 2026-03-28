@@ -141,7 +141,7 @@
     <li><a class="nav-link" href="blog.html">Blog</a></li>
     <li><a class="nav-link" href="about.html">About</a></li>
     <li><a class="nav-link" href="contact.html">Contact</a></li>
-    <li><button class="nav-3d" onclick="openExplorer()">◆ 3D Explorer</button></li>
+    <li><a class="nav-3d" href="dashboard.html" style="text-decoration:none">◆ Dashboard</a></li>
   </ul>
 </nav>
 <section class="page-hero" id="main-content">
@@ -385,7 +385,7 @@
 <script src="js/shared.js"></script>
 <script src="js/integrations.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
-<script src="js/explorer.js"></script><script src="js/logs.js"></script><script>
+<script>
 iV('de',function(x,w,h,f){x.strokeStyle='#a855f7';x.lineWidth=1.5;x.globalAlpha=.7;x.beginPath();for(var i=0;i<w;i++){var y=h/2+Math.sin((i+f)*.06)*h*.25+(Math.random()-.5)*7;i?x.lineTo(i,y):x.moveTo(i,y)}x.stroke();x.globalAlpha=1});
 iV('dth',function(x,w,h,f){var b=16,bw=w/b-2;for(var i=0;i<b;i++){var bh=(Math.sin(f*.03+i*.5)*.5+.5)*h*.65+h*.1;x.fillStyle=i===11?'rgba(239,68,68,0.5)':'rgba(56,189,248,0.2)';x.fillRect(i*(bw+2),h-bh,bw,bh)}});
 iV('dn',function(x,w,h,f){var ls=[3,5,5,3],g=w/(ls.length+1);ls.forEach(function(n,li){var lx=g*(li+1),s=h/(n+1);for(var ni=0;ni<n;ni++){var y=s*(ni+1);x.beginPath();x.arc(lx,y,3,0,Math.PI*2);x.fillStyle=Math.sin(f*.04+li+ni)>.3?'#2dd4bf':'rgba(255,255,255,0.08)';x.fill();if(li<ls.length-1){var nx=g*(li+2),ns2=h/(ls[li+1]+1);for(var nj=0;nj<ls[li+1];nj++){x.beginPath();x.moveTo(lx,y);x.lineTo(nx,ns2*(nj+1));x.strokeStyle='rgba(45,212,191,0.06)';x.lineWidth=1;x.stroke()}}}})});

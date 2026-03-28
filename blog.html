@@ -95,7 +95,7 @@
     <li><a class="nav-link active" href="blog.html">Blog</a></li>
     <li><a class="nav-link" href="about.html">About</a></li>
     <li><a class="nav-link" href="contact.html">Contact</a></li>
-    <li><button class="nav-3d" onclick="openExplorer()">◆ 3D Explorer</button></li>
+    <li><a class="nav-3d" href="dashboard.html" style="text-decoration:none">◆ Dashboard</a></li>
   </ul>
 </nav>
 
@@ -350,7 +350,7 @@ function filterBlog(cat){
 <script src="js/shared.js"></script>
 <script src="js/integrations.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
-<script src="js/explorer.js"></script><script src="js/logs.js"></script>
+
 <script>
 var MODALS=MODALS||{};
 MODALS.blog_hndl={tag:'ARTICLE',color:'var(--coral)',title:'Harvest Now, Decrypt Later',body:'<p>Nation-state adversaries are systematically intercepting and storing encrypted communications today, betting that quantum computers will eventually give them the key to decrypt everything. This strategy — known as Harvest Now, Decrypt Later — is not theoretical. Intelligence agencies from multiple countries have confirmed active HNDL programs targeting government, financial, and healthcare data.</p><h3>What\'s being harvested</h3><ul><li>Financial transaction records, trading algorithms, and interbank communications with decades of competitive value</li><li>Healthcare data including genomic sequences that remain sensitive permanently — DNA cannot be re-encrypted</li><li>Government and military classified communications, diplomatic cables, and intelligence operations</li><li>AI model weights, training datasets, and proprietary algorithms worth billions in R&amp;D investment</li><li>Legal documents, M&amp;A strategies, and patent filings before publication</li></ul><h3>The timeline problem</h3><p>According to Mosca\'s Theorem, if the time your data must remain secret plus the time needed to migrate to quantum-safe encryption exceeds the time until quantum computers arrive — your data is already compromised. For healthcare records (50+ year confidentiality) and government secrets (decades), we are already past the point of no return.</p><h3>Why QAISS matters now</h3><p>QAISS implements quantum-safe encryption using NIST-standardized algorithms (ML-KEM, ML-DSA, SLH-DSA) that remain secure against both classical and quantum computers. Combined with quantum-generated entropy and autonomous key rotation, QAISS neutralizes the HNDL strategy entirely — making harvested data permanently worthless.</p><h3>References</h3><ul><li><a href="https://www.weforum.org/stories/2026/02/quantum-security-question-leaders-cannot-ignore/" target="_blank" style="color:var(--teal)">WEF — Why Quantum Security Cannot Be Ignored (Feb 2026)</a></li><li><a href="https://www.nsa.gov/Cybersecurity/Post-Quantum-Cybersecurity-Resources/" target="_blank" style="color:var(--teal)">NSA Post-Quantum Cybersecurity Resources</a></li><li><a href="https://fticommunications.com/quantum-computing-and-the-expansion-of-cybersecurity-risk/" target="_blank" style="color:var(--teal)">FTI — Quantum Computing and Cybersecurity Risk (2026)</a></li></ul>'};
